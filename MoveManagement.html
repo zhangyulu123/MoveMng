@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv = "X-UA-Compatible" content = "IE = edge" charset = "UTF-8"/> 
+		<title>MoveManagement</title>
+		<link rel = "stylesheet" href = "../src/main/webapp/pages/css/wanma.css"/>
+		<link rel = "stylesheet" href = "../src/main/webapp/tools/easyui/themes/default/easyui.css"/>
+		<link rel = "stylesheet" href = "../src/main/webapp/tools/easyui/themes/icon.css"/>
+		
+		<script type = "text/javascript" src = "../src/main/webapp/tools/tssJS/tssJS.all.js"></script>
+		
+		<script type = "text/javascript" src = "../src/main/webapp/tools/easyui/jquery.min.js"></script>
+		<script type = "text/javascript" src = "../src/main/webapp/tools/easyui/jquery.easyui.min.js"></script>
+		<script type = "text/javascript" src = "../src/main/webapp/tools/easyui/easyui-lang-zh_CN.js"></script>
+		
+		<script type = "text/javascript" src = "../src/main/webapp/tools/echarts/echarts-all-2.1.10.js"></script>
+		<script type = "text/javascript" src = "../src/main/webapp/more/bi_template/echart.js"></script>
+		<script type = "text/javascript" src = "../src/main/webapp/more/bi_template/common.js"></script>
+		<script type = "text/javascript" src = "../src/main/webapp/pages/js/common.js"></script>
+		<style type = "text/css">
+			#nav ul{
+				list-style:none; 
+				margin: 0px;
+				padding: 0px; 
+				width: auto;
+			}
+			
+			#nav ul li{
+				float: left;
+				margin: 0 2%;
+			}
+			
+			.sum{
+				width: 60px;
+				height: 40px;
+			}
+			
+			
+			.part_title, .title_detail{
+				font-size: 20px;
+				text-align: center;
+			}
+			
+			#part5 .title_detail{
+				float: left;
+			}
+			
+		</style>
+		<script type = "text/javascript">
+		
+			var data,
+				method = "POST", 
+			    //DATA_URL = "http://10.9.45.68:8080/tss/data/json/2212", 
+			    params = {"param1": "2016-06-22", "param2": "-1"};
+			
+			$(function(){
+				//globalValiable = window.parent.globalValiable;
+				//if(globalValiable && globalValiable.queryParams){
+					//params = globalValiable.queryParams;
+				//}
+				tssJS.ajax({
+					//url: DATA_URL,
+					params: params,
+					method: method,
+					type: "json",
+					waiting: true,
+					ondata: function(){
+						data =  this.getResponseJSON();
+						
+					}
+				});
+				
+			});
+				
+		</script>
+	</head>
+	<body>
+		<div id = "main">
+			<div id = "nav">
+				<ul>
+					<li id = "part1">
+						<p class = "part_title">搜索窗口</p>
+						<p>
+							<input class = "easyui-datebox" style = "width:100px"/>
+							<input class = "easyui-combobox" data-options = "panelHeight: 'auto'" style = "width:100px"/>
+						</p>
+						<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+					</li>
+					<li id = "part2">
+						<p class = "part_title">库存监控</p>
+						<p>
+							<span class = "title_detail">待卸</span>
+							<span class = "title_detail">待移</span>
+							<span class = "title_detail">在库</span>
+							<span class = "title_detail">装车</span>
+						</p>
+						<p>
+							<input type = "text" class = "sum"/>
+							<input type = "text" class = "sum"/>
+							<input type = "text" class = "sum"/>
+							<input type = "text" class = "sum"/>
+						</p>
+					</li>
+					<li id = "part3">
+						<p class = "part_title">货量预警</p>
+						<p>
+							<span class = "title_detail">加急货量</span>
+							<span class = "title_detail">正常货量</span>
+						</p>
+						<p>
+							<input type = "text" class = "sum"/>
+							<input type = "text" class = "sum"/>
+						</p>
+					</li>
+					<li id = "part4">
+						<p class = "part_title">移动监控</p>
+						<p>
+							<span class = "title_detail">成组</span>
+							<span class = "title_detail">移动</span>
+						</p>
+						<p>
+							<input type = "text" class = "sum"/>
+							<input type = "text" class = "sum"/>
+						</p>
+					</li>
+					<li id = "part5">
+						<p class = "part_title">移动能力</p>
+						<p>
+							<span class = "title_detail">综合移动<br/>次数</span>
+							<span class = "title_detail">综合移动<br/>效率</span>
+						</p>
+						<p>
+							<input type = "text" class = "sum"/>
+							<input type = "text" class = "sum"/>
+						</p>
+					</li>
+				</ul>
+			</div>
+			<table></table>
+		</div>
+	</body>
+</html>
